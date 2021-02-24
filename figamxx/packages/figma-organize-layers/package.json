@@ -12,8 +12,8 @@
   "author": "MONK.REN Redsigned on the basis ofYuan Qing Lim",
   "repository": {
     "type": "git",
-    "url": "git://github.com/yuanqing/figma-plugins.git",
-    "directory": "packages/figma-organize-layers"
+    "url": "git@github.com:zhangruisheng/figma-plugins-redesign.git",
+    "directory": "figamxx/packages/figma-organize-layers"
   },
   "files": [
     "src"

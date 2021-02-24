@@ -1,0 +1,70 @@
+{
+  "name": "figma-sort-layers",
+  "version": "1.4.0",
+  "description": "A Figma plugin to sort layers by name or position",
+  "keywords": [
+    "create-figma-plugin",
+    "figma",
+    "figma-plugin",
+    "figma-plugins"
+  ],
+  "license": "MIT",
+  "author": "Yuan Qing Lim",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yuanqing/figma-plugins.git",
+    "directory": "packages/figma-sort-layers"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build": "yarn run clean && build-figma-plugin",
+    "clean": "rimraf '*.log' build manifest.json 'src/**/*.scss.d.ts'",
+    "fix": "eslint --fix 'src/**/*.{ts,tsx}' && prettier --loglevel error --write package.json tsconfig.json",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "watch": "yarn run clean && build-figma-plugin --watch"
+  },
+  "dependencies": {
+    "@create-figma-plugin/utilities": "*",
+    "array-shuffle": "^1.0.1",
+    "create-figma-plugin": "^0.0.81",
+    "mem": "^8.0.0",
+    "natural-compare-lite": "^1.4.0"
+  },
+  "figma-plugin": {
+    "name": "Sort Layers",
+    "id": "767379414704079825",
+    "menu": [
+      {
+        "name": "Sort Layers by Name",
+        "main": "sort-nodes-by-name/main"
+      },
+      {
+        "name": "Sort Layers by X Position",
+        "main": "sort-nodes-by-x-position/main"
+      },
+      {
+        "name": "Sort Layers by Y Position",
+        "main": "sort-nodes-by-y-position/main"
+      },
+      {
+        "name": "Smart Sort Layers",
+        "main": "smart-sort-nodes/main"
+      },
+      {
+        "name": "Reverse Layers Sort Order",
+        "main": "reverse-nodes-sort-order/main"
+      },
+      {
+        "name": "Randomize Layers Sort Order",
+        "main": "randomize-nodes-sort-order/main"
+      },
+      "-",
+      {
+        "name": "Sort Pages by Name",
+        "main": "sort-pages-by-name/main"
+      }
+    ]
+  }
+}

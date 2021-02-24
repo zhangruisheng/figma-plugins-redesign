@@ -1,0 +1,79 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "yarn run clean && lerna run build",
+    "bump-dependencies": "ts-node scripts/bump-dependencies.ts",
+    "clean": "lerna run --parallel clean && rimraf '*.log'",
+    "fix": "lerna run --parallel fix && eslint --fix 'scripts/**/*.ts' && prettier --loglevel error --write 'package.json' 'tsconfig.shared.json'",
+    "lint": "lerna run --parallel lint && eslint 'scripts/**/*.ts'",
+    "postinstall": "yarn run build",
+    "publish": "lerna publish from-package",
+    "reset": "yarn run clean && lerna clean --yes && rimraf node_modules yarn.lock && yarn install",
+    "test": "lerna run test"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.12.5",
+    "@create-figma-plugin/build": "*",
+    "@create-figma-plugin/tsconfig": "*",
+    "@figma/plugin-typings": "^1.18.2",
+    "@types/natural-compare-lite": "^1.4.0",
+    "@types/tap": "^14.10.1",
+    "eslint": "^7.13.0",
+    "eslint-config-yuanqing": "^0.0.4",
+    "globby": "^11.0.1",
+    "husky": "^4.3.0",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.5.1",
+    "npm-check-updates": "^10.0.0",
+    "preact": "^10.5.7",
+    "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
+    "stylelint": "^13.7.2",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-prettier": "^1.1.2",
+    "tap": "^14.10.8",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5",
+    "typescript-plugin-css-modules": "^2.8.0"
+  },
+  "eslintConfig": {
+    "extends": "yuanqing",
+    "ignorePatterns": [
+      "*.scss.d.ts"
+    ],
+    "rules": {
+      "@typescript-eslint/explicit-module-boundary-types": [
+        "off"
+      ],
+      "react/prop-types": [
+        "off"
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint"
+    ],
+    "*.scss": [
+      "stylelint",
+      "prettier"
+    ]
+  },
+  "prettier": "eslint-config-yuanqing/prettier",
+  "stylelint": {
+    "extends": [
+      "stylelint-prettier/recommended"
+    ]
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "create-figma-plugin": "^0.0.81"
+  }
+}

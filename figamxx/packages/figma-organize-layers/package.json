@@ -1,0 +1,62 @@
+{
+  "name": "Align-H",
+  "version": "1.2.0",
+  "description": "组织页面图层",
+  "keywords": [
+    "create-figma-plugin",
+    "figma",
+    "figma-plugin",
+    "figma-plugins"
+  ],
+  "license": "MIT",
+  "author": "MONK.REN Redsigned on the basis ofYuan Qing Lim",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yuanqing/figma-plugins.git",
+    "directory": "packages/figma-organize-layers"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build": "yarn run clean-build && build-figma-plugin",
+    "clean": "yarn run clean-build && yarn run clean-test",
+    "clean-build": "rimraf '*.log' build manifest.json",
+    "clean-test": "rimraf '*.log' .nyc_output coverage",
+    "fix": "eslint --fix '{src,test}/**/*.{ts,tsx}' && prettier --loglevel error --write 'src/**/*.scss' package.json tsconfig.json",
+    "lint": "eslint '{src,test}/**/*.{ts,tsx}' && stylelint 'src/**/*.scss'",
+    "test": "yarn run clean-test && TS_NODE_PROJECT='test/tsconfig.json' tap 'test/**/*.ts' --coverage-report html --coverage-report text --no-browser --reporter terse",
+    "watch": "yarn run clean-build && build-figma-plugin --watch"
+  },
+  "dependencies": {
+    "@create-figma-plugin/ui": "*",
+    "@create-figma-plugin/utilities": "*",
+    "preact": "^10.5.7"
+  },
+  "figma-plugin": {
+    "name": "Align-H",
+    "id": "786286754606650597",
+    "menu": [
+      {
+        "name": "Align-H",
+        "main": "organize-layers/main",
+        "ui": "organize-layers/ui"
+      },
+      "-",
+      {
+        "name": "Reset Plugin",
+        "main": "reset-plugin/main"
+      }
+    ],
+    "relaunchButtons": {
+      "organizeLayers": {
+        "name": "Align-H",
+        "main": "organize-layers/main",
+        "ui": "organize-layers/ui"
+      }
+    }
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.19.1"
+  }
+}
